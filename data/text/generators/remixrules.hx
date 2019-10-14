@@ -42,6 +42,7 @@ if(player == 'Thief') earlytwists.push('The Thief'); //Finders Keepers rules
 if(player == 'Inventor') earlytwists.push('The Inventor'); //PU Scrap rules
 //if(player == 'Robot') earlytwists.push('The Robot'); //You Choose You Lose rules
 //if(player == 'Witch') earlytwists.push('The Witch'); //Expect the unexpected rules
+if(player == 'Warrior') earlytwists.push('The Warrior'); //PU skill card rules
 
 var hardlist = ['Sorceress', 'Bully', 'Bounty Hunter', 'Cowboy', 'Kraken'];
 if(player == 'Robot'){

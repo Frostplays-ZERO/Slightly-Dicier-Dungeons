@@ -46,7 +46,7 @@ Hothead,If you or your enemy rolls a six[;] it|automatically catches on fire.,ho
 Pirate,Both you and your enemies start each|fight with [recycle]Re-Equip_Next[].,pirate,-60|-20,Rules.addplayerinnatestatus(REEQUIPNEXT[;] 1[;] true); Rules.addenemyinnatestatus(REEQUIPNEXT[;] 1[;] true); ,YES
 Rotten Apple,Maximum health no longer increases|when you level up.,applemimic,0|0,Rules.hpchangeonlevelup = 0;,YES
 Copycat,Enemies can steal a random piece of|equipment from you every turn.,copycat,0|0,//to do: implement this - Rules.addextrascript(~if(target.spaceleft() >= 2) {giveenemyequipment(\~Thief Stolen Card\~| false| false); }~[;] ~startcombat~);,YES
-The Warrior,to do,_warrior,-90|-20,//to do: implement this,YES
+The Warrior,Your skill card is|randomised each turn.,_warrior,-90|-20,Rules.addextrascript(if(chance(25)){ self.replaceskillcard(rand[~Combat Key~|~Combat Lock~|~Combat Doppel~|~Combat Spanner~]);} else{ self.replaceskillcard(rand[~Combat Roll@PU~|~Combat Spatula~|~Combat Bump~|~Combat Nudge~]);}|~onstartturn~),YES
 The Robot,Switch to ~You Choose[;] You Lose~ rules.,_robot,-90|-20,//to do: implement this,YES
 The Inventor,Reduce scrap choices to two. The|second choice is hidden.,_inventor,-90|-40,Rules.inventor_blindinspiration = true;,YES
 The Witch,One spell slot contains a completely|random spell each turn.,_witch,-90|-30,//to do: implement this,YES
