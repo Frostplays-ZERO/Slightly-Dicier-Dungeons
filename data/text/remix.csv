@@ -1,57 +1,67 @@
-Name,Description,Image,ImageOffset,Rule Change,Apply On Continue
-Random,A different rule change[;] chosen randomly.,_random,,,YES
-Lady Luck,All enemy equipment is upgraded.,_ladyluck,-50|-22,Rules.upgradeenemyequipment = true;,YES
-Wolf Puppy,Both you and your enemies start each|fight with [fury]Fury[].,wolfpuppy,0|0,Rules.addplayerinnatestatus(FURY[;] 1[;] true); Rules.addenemyinnatestatus(FURY[;] 1[;] true); ,YES
-Sorceress,Enemies can throw unused dice at you.,sorceress,0|0,Rules.enemiescanthrowdice = true;,YES
-Drake,Enemies get 20% extra health.,vampire,-30|10,Rules.enemyhpadjust = 1.2;,YES
-Scathach,You are [curse]Cursed[] every turn[;]|but you get an extra dice.,scahatch,-60|-30,Rules.addplayerinnatestatus(CURSE); self.dice++;,YES
-Loud Bird,Enemies will [dodge]Dodge[] your first|attack every turn.,loudbird,0|-50,Rules.addenemyinnatestatus(DODGE);,YES
-Buster,Burning dice cost [heart]5[] hp to extinguish.,dragon,-130|-60,Rules.burningdicecost = 5;,YES
-Snowman,One of your dice is [ice]Frozen at the|start of every turn.,snowman,-10|-50,Rules.addplayerinnatestatus(ICE); ,YES
-Fireman,One of your dice is [fire]Burning at the|start of every turn.,fireman,-20|-30,Rules.addplayerinnatestatus(FIRE); ,YES
-Singer,On your first turn[;] all your dice rolls|are the same number.,singer,-20|0,Rules.addextrascript(~Rules.stackplayerdice([[rand([1[;]2[;]3[;]4[;]5[;]6])]][;] false[;] false);~[;] ~startcombat~);,YES
-Vacuum,Enemies get 10% extra health.,vacuum,-100|50,Rules.enemyhpadjust = 1.1;,YES
-Sticky Hands,Enemies have a chance to go first.,stickyhands,-90|10,Rules.addextrascript(~var goesfirst = false; if((self.maxhp / self.hp) < 2) { goesfirst = chance(60); } else { goesfirst = chance(20); } if(goesfirst){ target.innate.push(\~goesfirst\~); }~[;] ~startcombat~);,YES
-Mimic,Everything in the dungeon looks like|a treasure chest.,mimic,,Rules.mimiccurse=true;,YES
-Baby Squid,One of your dice is [blind]Blinded at the|start of every turn.,squid,30|0,Rules.addplayerinnatestatus(BLIND); ,YES
-Haunted Jar,Poison is no longer reduced by 1|each turn.,hauntedjar,0|0,Rules.playerpoisondelta = 0; Rules.enemypoisondelta = 0;,YES
-Paper Knight,Start with 2 extra dice. Lose 1 dice|every turn[;] until you have just 1 left.,cardboardwarrior,-90|0,Rules.addextrascript(~self.extradice = 3;~[;] ~startcombat~); Rules.addextrascript(~self.extradice--; if(self.dice + self.extradice < 1) self.extradice = 1- self.dice;~[;] ~beforestartturn~);,YES
-Robobot,If your CPU counter exceeds the|target[;] take [heart]5[] damage.,robobot,-70|-50,Rules.robot_errorpenalty = 5;,YES
-Dire Wolf,The odds of [curse]Curse[] triggering is|reduced to 25%.,direwolf,-40|0,Rules.curseodds = 25;,YES
-Banshee,Instead of causing equipment to fail[;]|[curse]Curse[] reverses your target.,banshee,-20|0,Rules.setalternate(~curse~);,YES
-Madison,Enemies start each fight with [fury]Fury[].,girlscout,-10|-30,Rules.addenemyinnatestatus(FURY[;] 1[;] true); ,YES
-Bully,All enemies get a Rock.,bully,-50|-10,Rules.addextrascript(~if(target.spaceleft() >= 1) {giveenemyequipment(\~Rock\~| false| false); }~[;] ~startcombat~);,YES
-Skeleton,Lose a dice.,skeleton,-20|-80,self.dice--;,NO
-Cornelius,Lose [heart]10[] max health.,cornelius,0|-40,self.maxhp -= 10; if(self.hp > self.maxhp) { self.hp = self.maxhp; },NO
-Cowboy,Enemies always roll a 6.,cowboy,10|0,Rules.stackenemydice([[6]][;] true[;] true[;] true);,YES
-Handyman,You need an even dice to unshock|[shock]Shocked[] equipment.,handyman,-30|-10,Rules.shocktype = ~EVEN~;,YES
-Wizard,All enemies get an extra dice.,wizard,-50|-20,Rules.addextrascript(~target.extradice = 1;~[;] ~startcombat~); ,YES
-Warlock,Status effects are different.,warlock,-70|-50,Rules.setalternate(~all~);,YES
-Alchemist,After 4 turns[;] all enemies transform|into bears.,potionmixer,-20|-70,Rules.addenemyinnatestatus(~beartransform~[;] 4[;] true);,YES
-Space Marine,Enemies will never roll a 1.,spacemarine,-30|-10,Rules.enemydicerange([2[;] 3[;] 4[;] 5[;] 6]);,YES
-Bounty Hunter,You will never roll a 6.,bountyhunter,-20|0,Rules.playerdicerange([1[;]2[;] 3[;] 4[;] 5]);,YES
-Rose,Both you and your enemies do +[sword]1|extra damage with each attack.,rose,-20|-40,Rules.bonusdamage = 1; Rules.addenemyinnatestatus(~extradamage~[;] 1[;] false); Rules.addplayerinnatestatus(~extradamage~[;] 1[;] false);,YES
-Cactus,When you defeat an enemy[;] excessive|damage is reflected back at you.,cactuswarrior,-20|0,Rules.addenemyinnatestatus(~reflectexcess~[;] 1[;] false);,YES
-The Thief,Switch to ~Finders Keepers~ rules.,_thief,-90|-20,Rules.switchtofinderskeepers();,YES
-Ned,All equipment you find is upgraded… | But so is everyone else's.,*anvil,-75|15,Rules.switchtoitllbefine(); Rules.upgradeenemyequipment = true;,YES
-Frog,All small equipment becomes big.,frog,-80|-40,Rules.makeallequipmentbig();,YES
-Slime,Start each fight with [poison]2 poison.,slime,10|-20,Rules.addplayerinnatestatus(POISON[;] 2[;] true); Rules.addextrascript(~if(turn == 1){ removestatusself(POISON[;] 1); pierceattackself(2|POISON); sfxdamage(self[;]2); sfx(\~_poison\~[;]\~\~[;]0.2); }~[;] ~onstartturn~);,YES
-Wisp,No duplicates! Matching dice vanish|as soon as they are created.,wisp,20|-60,Rules.destroymatchingdice = true;,YES
-Sneezy,Using any piece of equipment will|reroll a random dice.,sneezey,-20|-10,Rules.addextrascript(~var availdice = []; for (mydice in self.dicepool){ if (mydice.available() && !mydice.intween()){ availdice.push(mydice); } } if(availdice.length > 0) { shuffle(availdice); availdice[0].animatereroll(rand([1[;]2[;]3[;]4[;]5[;]6]) | self.screenposition());  }~[;] ~playerequipmentuse~); ,YES
-Val,At the start of each turn[;] replace one|of your items with a random item.,*tradingpost,-75|-80,Rules.addextrascript(~  self.setvar('valremix_original'[;] ''); self.setvar('valremix_new'[;] '');  ~[;] ~startcombat~); Rules.addextrascript(~  var oldequip = self.getvar('valremix_original');  var replaceequipname = self.getvar('valremix_new'); var replaceequip = null; for(eq in self.equipment) {    if(eq.skillcard == ''){     if(eq.name + eq.namemodifier == replaceequipname){       replaceequip = eq;     }   } }    if(oldequip != '' && replaceequip != null){    replacemewith(oldequip[;] -1[;] replaceequip[;] self);   removeequipment(replaceequipname[;] self);   self.fixskillcard(); }  ~[;] ~endturn~);  Rules.addextrascript(~  var oldequip = self.getvar('valremix_original');  var replaceequipname = self.getvar('valremix_new'); var replaceequip = null; for(eq in self.equipment) {    if(eq.skillcard == ''){     if(eq.name + eq.namemodifier == replaceequipname){       replaceequip = eq;     }   } }    if(oldequip != '' && replaceequip != null){    replacemewith(oldequip[;] -1[;] replaceequip[;] self);   removeequipment(replaceequipname[;] self);   self.fixskillcard(); }  ~[;] ~aftercombat~); Rules.addextrascript(~  var neweq = '';  var eqlist = [];  for(eq in self.equipment) {    if(eq.skillcard == '') eqlist.push(eq);  }   if(eqlist.length > 0) {    var equiptoreplace = rand(eqlist);    if(equiptoreplace.size == 2) {      neweq = rand(getparticularequipment(['large']));    } else {      neweq = rand(getparticularequipment(['small']));    }       if(equiptoreplace.namemodifier == '+'){     neweq += '+';   }   replacemewith(neweq[;] -1[;] equiptoreplace[;] self);       self.setvar('valremix_original'[;] equiptoreplace.name + equiptoreplace.namemodifier);    self.setvar('valremix_new'[;] neweq);  } else {    self.setvar('valremix_original'[;] '');    self.setvar('valremix_new'[;] '');  }  ~[;] ~onstartturn~);,YES
-Yolanda,Shops can sell any item from the game.,*shop,-90|-60,Rules.mixedupshops();,YES
-Rat King,Add two super enemies.,ratking,-60|-10,Rules.addsuperenemies(2);,YES
-Kraken,Cannot see enemy health after|the first turn.,kraken,-80|-60,Rules.addextrascript(~if(turn == 1) { inflictself(\~cannotseeenemyhealth\~); sfx(\~_blind\~); }~[;] ~endturn~);,YES
-Hothead,If you or your enemy rolls a six[;] it|automatically catches on fire.,hothead,-30|-20,Rules.ignitedice = true; Rules.igniterange = [6];,YES
-Pirate,Both you and your enemies start each|fight with [recycle]Re-Equip_Next[].,pirate,-60|-20,Rules.addplayerinnatestatus(REEQUIPNEXT[;] 1[;] true); Rules.addenemyinnatestatus(REEQUIPNEXT[;] 1[;] true); ,YES
-Rotten Apple,Maximum health no longer increases|when you level up.,applemimic,0|0,Rules.hpchangeonlevelup = 0;,YES
-Copycat,Enemies can steal a random piece of|equipment from you every turn.,copycat,0|0,//to do: implement this - Rules.addextrascript(~if(target.spaceleft() >= 2) {giveenemyequipment(\~Thief Stolen Card\~| false| false); }~[;] ~startcombat~);,YES
-The Warrior,Your skill card is|randomised each turn.,_warrior,-90|-20,Rules.addextrascript(if(chance(25)){ self.replaceskillcard(rand[~Combat Key~|~Combat Lock~|~Combat Doppel~|~Combat Spanner~]);} else{ self.replaceskillcard(rand[~Combat Roll@PU~|~Combat Spatula~|~Combat Bump~|~Combat Nudge~]);}|~onstartturn~),YES
-The Robot,Switch to ~You Choose[;] You Lose~ rules.,_robot,-90|-20,//to do: implement this,YES
-The Inventor,Reduce scrap choices to two. The|second choice is hidden.,_inventor,-90|-40,Rules.inventor_blindinspiration = true;,YES
-The Witch,One spell slot contains a completely|random spell each turn.,_witch,-90|-30,//to do: implement this,YES
-The Apple,Apples restore double health.|You no longer heal when leveling up.,*apple,-70|-30,//to do: implement this,YES
-The Exit,Add a 7th floor to the dungeon.,*exit,-90|-50,//to do: implement this,YES
-The Jester,to do,_jester,-90|-20,//to do: implement this,YES
-Beatrice,One of your items is [shock]Shocked | each turn.,beatrice,0|0,Rules.addplayerinnatestatus(SHOCK); ,YES
-Gardener,One of your items is [weaken]Weakeneded | each turn.,gardener,0|0,Rules.addplayerinnatestatus(WEAKEN); ,YES
+Name,Description,Image,ImageOffset,Implemented,Rule Change,Apply On Continue
+Random,A different rule change[;] chosen randomly.,_random,,YES,,YES
+Lady Luck,All enemy equipment is upgraded.,_ladyluck,-50|-22,YES,Rules.upgradeenemyequipment = true;,YES
+Wolf Puppy,Both you and your enemies start each|fight with [fury]Fury[].,wolfpuppy,0|0,YES,Rules.addplayerinnatestatus(FURY[;] 1[;] true); Rules.addenemyinnatestatus(FURY[;] 1[;] true); ,YES
+Sorceress,Enemies can throw unused dice at you.,sorceress,0|0,YES,Rules.enemiescanthrowdice = true;,YES
+Drake,Get a Silver Bullet.|All enemies become [curse]Vampires.,vampire,-30|10,YES,var hasbullet = false; var oldskillcard = ~~; Rules.addenemyinnatestatus(VAMPIRE); Rules.addextrascript(~var spaceused=0; for(eq in self.equipment){spaceused += eq.size; } if(turn==1){var givetest = true; self.setvar('oldskillcard'|self.getskillcard().name); if(self.getvar('hasbullet')){givetest = false;} if(givetest){if(spaceused>6){self.replaceskillcard('Drake@nospace');}else{self.replaceskillcard('Drake@havespace');}}~|~onstartturn~),YES
+Scathach,Switch to Uptick rules.,scahatch,-60|-30,YES,self.setvar(~uptick~|1); Rules.addextrascript(~var uptick = self.getvar('uptick'); Rules.stackplayerdice([[uptick]][;] true); self.replaceskillcard('Uptick@' + uptick);~|~beforestartturn~); Rules.addextrascript(~var uptick = self.getvar('uptick') + 1; if(uptick >=7) uptick = 1; self.setvar('uptick'[;] uptick);~|~endturn~); Rules.addextrascript(~var uptick = self.getvar('uptick') + 1; if(uptick >=7) uptick = 1; self.setvar('uptick'[;] uptick);~|~aftercombat~); ,YES
+Loud Bird,Enemies will [dodge]Dodge[] your first|attack every turn.,loudbird,0|-50,YES,Rules.addenemyinnatestatus(DODGE);,YES
+Buster,Burning dice cost [heart]5[] hp to extinguish.,dragon,-130|-60,YES,Rules.burningdicecost = 5;,YES
+Snowman,One of your dice is [ice]Frozen at the|start of every turn.,snowman,-10|-50,YES,Rules.addplayerinnatestatus(ICE); ,YES
+Fireman,One of your dice is [fire]Burning at the|start of every turn.,fireman,-20|-30,YES,Rules.addplayerinnatestatus(FIRE); ,YES
+Singer,On your first turn[;] all your dice rolls|are the same number.,singer,-20|0,YES,Rules.addextrascript(~Rules.stackplayerdice([[rand([1[;]2[;]3[;]4[;]5[;]6])]][;] false[;] false);~[;] ~startcombat~);,YES
+Vacuum,Enemies get 10% extra health.,vacuum,-100|50,YES,Rules.enemyhpadjust = 1.1;,YES
+Sticky Hands,Enemies have a chance to go first.,stickyhands,-90|10,YES,Rules.addextrascript(~var goesfirst = false; if((self.maxhp / self.hp) < 2) { goesfirst = chance(60); } else { goesfirst = chance(20); } if(goesfirst){ target.innate.push(\~goesfirst\~); }~[;] ~startcombat~);,YES
+Mimic,Everything in the dungeon looks like|a treasure chest.,mimic,,YES,Rules.mimiccurse=true;,YES
+Baby Squid,One of your dice is [blind]Blinded at the|start of every turn.,squid,30|0,YES,Rules.addplayerinnatestatus(BLIND); ,YES
+Haunted Jar,Poison is no longer reduced by 1|each turn.,hauntedjar,0|0,YES,Rules.playerpoisondelta = 0; Rules.enemypoisondelta = 0;,YES
+Paper Knight,Start with 2 extra dice. Lose 1 dice|every turn[;] until you have just 1 left.,cardboardwarrior,-90|0,YES,Rules.addextrascript(~self.extradice = 3;~[;] ~startcombat~); Rules.addextrascript(~self.extradice--; if(self.dice + self.extradice < 1) self.extradice = 1- self.dice;~[;] ~beforestartturn~);,YES
+Robobot,If your CPU counter exceeds the|target[;] take [heart]5[] damage.,robobot,-70|-50,YES,Rules.robot_errorpenalty = 5;,YES
+Dire Wolf,The odds of [curse]Curse[] triggering is|reduced to 25%.,direwolf,-40|0,YES,Rules.curseodds = 25;,YES
+Banshee,You are [silence]Silenced on every odd turn.,banshee,-20|0,YES,Rules.addextrascript(~if(turn % 2 == 1) { inflictself(SILENCE); sfx('_silence'); }~[;] ~beforestartturn~);,YES
+Madison,Enemies start each fight with [fury]Fury[].,girlscout,-10|-30,YES,Rules.addenemyinnatestatus(FURY[;] 1[;] true); ,YES
+Bully,All enemies get a Rock.,bully,-50|-10,YES,Rules.addextrascript(~if(target.spaceleft() >= 1) {giveenemyequipment(\~Rock\~| false| false); }~[;] ~startcombat~);,YES
+Skeleton,Lose a dice.,skeleton,-20|-80,YES,self.dice--;,NO
+Cornelius,Lose [heart]10[] max health.,cornelius,0|-40,YES,self.maxhp -= 10; if(self.hp > self.maxhp) { self.hp = self.maxhp; },NO
+Cowboy,Enemies always roll a 6.,cowboy,10|0,YES,Rules.stackenemydice([[6]][;] true[;] true[;] true);,YES
+Handyman,You need an even dice to unshock|[shock]Shocked[] equipment.,handyman,-30|-10,YES,Rules.shocktype = ~EVEN~;,YES
+Wizard,All enemies get an extra dice.,wizard,-50|-20,YES,Rules.addextrascript(~target.extradice = 1;~[;] ~startcombat~); ,YES
+Warlock,Status effects are different.,warlock,-70|-50,YES,Rules.setalternate(~all~);,YES
+Alchemist,After 4 turns[;] all enemies transform|into bears.,potionmixer,-20|-70,YES,Rules.addenemyinnatestatus(~beartransform~[;] 4[;] true);,YES
+Space Marine,Enemies will never roll a 1.,spacemarine,-30|-10,YES,Rules.enemydicerange([2[;] 3[;] 4[;] 5[;] 6]);,YES
+Bounty Hunter,You will never roll a 6.,bountyhunter,-20|0,YES,Rules.playerdicerange([1[;]2[;] 3[;] 4[;] 5]);,YES
+Rose,Both you and your enemies do +[sword]1|extra damage with each attack.,rose,-20|-40,YES,Rules.bonusdamage = 1; Rules.addenemyinnatestatus(~extradamage~[;] 1[;] false); Rules.addplayerinnatestatus(~extradamage~[;] 1[;] false);,YES
+Cactus,When you defeat an enemy[;] excessive|damage is reflected back at you.,cactuswarrior,-20|0,YES,Rules.addenemyinnatestatus(~reflectexcess~[;] 1[;] false);,YES
+The Thief,Switch to ~Finders Keepers~ rules.,_thief,-90|-20,YES,Rules.switchtofinderskeepers();,YES
+Ned,All equipment you find is upgraded… | But so is everyone else's.,*anvil,-75|15,YES,Rules.switchtoitllbefine(); Rules.upgradeenemyequipment = true;,YES
+Frog,All small equipment becomes big.,frog,-80|-40,YES,Rules.makeallequipmentbig();,YES
+Slime,Start each fight with [poison]2 poison.,slime,10|-20,YES,Rules.addplayerinnatestatus(POISON[;] 2[;] true); Rules.addextrascript(~if(turn == 1){ removestatusself(POISON[;] 1); pierceattackself(2|POISON); sfxdamage(self[;]2); sfx(\~_poison\~[;]\~\~[;]0.2); }~[;] ~onstartturn~);,YES
+Wisp,No duplicates! Matching dice vanish|as soon as they are created.,wisp,20|-60,YES,Rules.destroymatchingdice = true;,YES
+Sneezy,Using any piece of equipment will|reroll a random dice.,sneezey,-20|-10,YES,Rules.addextrascript(~var availdice = []; for (mydice in self.dicepool){ if (mydice.available() && !mydice.intween()){ availdice.push(mydice); } } if(availdice.length > 0) { shuffle(availdice); availdice[0].animatereroll(rand([1[;]2[;]3[;]4[;]5[;]6]) | self.screenposition());  }~[;] ~playerequipmentuse~); ,YES
+Val,At the start of each turn[;] replace one|of your items with a random item.,*tradingpost,-75|-80,YES,Rules.addextrascript(~  self.setvar('valremix_original'[;] ''); self.setvar('valremix_new'[;] '');  ~[;] ~startcombat~); Rules.addextrascript(~  var oldequip = self.getvar('valremix_original');  var replaceequipname = self.getvar('valremix_new'); var replaceequip = null; for(eq in self.equipment) {    if(eq.skillcard == ''){     if(eq.name + eq.namemodifier == replaceequipname){       replaceequip = eq;     }   } }    if(oldequip != '' && replaceequip != null){    replacemewith(oldequip[;] -1[;] replaceequip[;] self);   removeequipment(replaceequipname[;] self);   self.fixskillcard(); }  ~[;] ~endturn~);  Rules.addextrascript(~  var oldequip = self.getvar('valremix_original');  var replaceequipname = self.getvar('valremix_new'); var replaceequip = null; for(eq in self.equipment) {    if(eq.skillcard == ''){     if(eq.name + eq.namemodifier == replaceequipname){       replaceequip = eq;     }   } }    if(oldequip != '' && replaceequip != null){    replacemewith(oldequip[;] -1[;] replaceequip[;] self);   removeequipment(replaceequipname[;] self);   self.fixskillcard(); }  ~[;] ~aftercombat~); Rules.addextrascript(~  var neweq = '';  var eqlist = [];  for(eq in self.equipment) {    if(eq.skillcard == '') eqlist.push(eq);  }   if(eqlist.length > 0) {    var equiptoreplace = rand(eqlist);    if(equiptoreplace.size == 2) {      neweq = rand(getparticularequipment(['large']));    } else {      neweq = rand(getparticularequipment(['small']));    }       if(equiptoreplace.namemodifier == '+'){     neweq += '+';   }   replacemewith(neweq[;] -1[;] equiptoreplace[;] self);       self.setvar('valremix_original'[;] equiptoreplace.name + equiptoreplace.namemodifier);    self.setvar('valremix_new'[;] neweq);  } else {    self.setvar('valremix_original'[;] '');    self.setvar('valremix_new'[;] '');  }  ~[;] ~onstartturn~);,YES
+Yolanda,Shops can sell any item from the game.,*shop,-90|-60,YES,Rules.mixedupshops();,YES
+Rat King,Add two super enemies.,ratking,-60|-10,YES,Rules.addsuperenemies(2);,YES
+Kraken,Cannot see your health |during combat (I think?),kraken,-80|-60,YES,Rules.addextrascript(~if(turn == 1) { inflict(\~cannotseeenemyhealth\~); sfx(\~_blind\~); }~[;] ~onstartturn~);,YES
+Hothead,If you or your enemy rolls a six[;] it|automatically catches on fire.,hothead,-30|-20,YES,Rules.ignitedice = true; Rules.igniterange = [6];,YES
+Pirate,Both you and your enemies start each|fight with [recycle]Re-Equip_Next[].,pirate,-60|-20,YES,Rules.addplayerinnatestatus(REEQUIPNEXT[;] 1[;] true); Rules.addenemyinnatestatus(REEQUIPNEXT[;] 1[;] true); ,YES
+Rotten Apple,Maximum health no longer increases|when you level up.,applemimic,0|0,YES,Rules.hpchangeonlevelup = 0;,YES
+Copycat,Enemies can steal a random piece of|equipment from you every turn.,copycat,0|0,NO,//to do: implement this - Rules.addextrascript(~if(target.spaceleft() >= 2) {giveenemyequipment(\~Thief Stolen Card\~| false| false); }~[;] ~startcombat~);,YES
+The Warrior,Your skill card is|randomised each turn.,_warrior,-90|-20,YES,Rules.addextrascript(~var card = ''; if(chance(25)){card =rand(['Combat Key'|'Combat Lock'|'Combat Doppel'|'Combat Spanner']);} else{ card=rand(['Combat Roll@SDD'|'Combat Spatula@SDD'|'Combat Bump'|'Combat Nudge']);} self.replaceskillcard(card)~;|~onstartturn~),YES
+The Robot,Switch to ~You Choose[;] You Lose~ rules.,_robot,-90|-20,NO,//to do: implement this,YES
+The Inventor,Reduce scrap choices to two. The|second choice is hidden.,_inventor,-90|-40,YES,Rules.inventor_blindinspiration = true;,YES
+The Witch,One spell slot contains a completely|random spell each turn.,_witch,-90|-30,NO,//to do: implement this,YES
+The Apple,Apples restore double health.|You no longer heal when leveling up.,*apple,-70|-30,NO,//to do: implement this,YES
+The Exit,Add a 7th floor to the dungeon.,*exit,-90|-50,NO,//todo,YES
+The Jester,"Switch to ""Losers Weepers"" rules.",_jester,-90|-20,YES,Deck.lookahead = 0; Deck.sethandsize(3); Deck.snapbutton = false; var unchanged=true; Rules.addextrascript(~var shouldgive=self.getvar('unchanged'); if(shouldgive){trace('Warriorised!'); self.replaceskillcard('Delete'); self.changelimitbreak('Magic Trick'); self.setvar('unchanged'|false);}~|~onstartturn~); Rules.addextrascript(~if(self.name != 'Bear'){self.finderskeepers = 9999;}~|~aftercombat~);,YES
+Gardener,One of your items is [weaken]Weakeneded | each turn.,gardener,0|0,YES,Rules.addplayerinnatestatus(WEAKEN); ,YES
+The Warrior?,You are now a Warrior.,_warrior,-90|-20,YES,Deck.lookahead = 0; Deck.sethandsize(3); Deck.snapbutton = false; var unchanged=true; Rules.addextrascript(~var shouldgive=self.getvar('unchanged'); if(shouldgive){trace('Warriorised!'); self.replaceskillcard('Combat Roll'); self.changelimitbreak('Fury'); self.setvar('unchanged'|false);}~|~onstartturn~);,YES
+The Bear,Transform into a Bear.,_bear,-90|-20,YES,Rules.addextrascript(~self.textparticle(getplayername()); if(getplayername() != 'Bear') {beartransform(); self.textparticle('poof!');} ~[;] ~onstartturn~);,YES
+Magician,Roll only odd dice on odd turns|and even dice on even turns.,streetmagician,0|0,YES,Rules.addextrascript(~if(turn%2==0){Rules.stackplayerdice([2[;]4[;]6][;] false[;] false);}else{Rules.stackplayerdice([1[;]3[;]5][;] false[;] false);}~[;] ~onstartturn~);,YES
+Drake@Jester,Get a Silver Bullet.|All enemies become [curse]Vampires.,vampire,-30|10,YES,var hasbullet = false; Rules.addenemyinnatestatus(VAMPIRE); Rules.addextrascript(~var shouldgive=self.getvar('hasbullet'); if(turn==1&&shouldgive==false){trace('Bullet Added!'); addjestercard('Silver Bullet'); self.setvar('hasbullet'|true);}~|~onstartturn~),YES
+Marshmallow,Swap all [fire]Fire equipment for [ice]Ice|equipment[;] and vice versa.,marshmallow,10|-10,YES,Rules.swap(~Flame Spell~[;] ~Freeze Spell~); Rules.swap(~Fireball~[;] ~Snowball~); Rules.swap(~Burning Light~[;] ~Ice Shard~); Rules.swap(~Staff~[;] ~Gemstone Staff~); Rules.swap(~Inferno~[;] ~Blizzard~); Rules.swap(~Meteor~[;] ~Absolute Zero~); Rules.swap(~Crucible~[;] ~Glass Cauldron~); Rules.swap(~The Ashes~[;] ~The Cold~); Rules.swap(~Whip~[;] ~Lament~); Rules.swap(~Spark~[;] ~Snowflake~); Rules.swap(~Sunburn~[;] ~Cold Snap~); Rules.swap(~Heatwave~[;] ~Snowstorm~); Rules.swap(~Fire Breath~[;] ~Ice Breath~); Rules.swap(~Flamethrower~[;] ~Snowblower~); Rules.swap(~Matchstick~[;] ~Icecube~); Rules.swap(~Fire Potion~[;] ~Ice Potion~); Rules.swap(~Campfire~[;] ~Air Conditioner~); Rules.swap(~Flame Blast~[;] ~Snow Blast~); Rules.swap(~Ignite~[;] ~Cold Wind~); Rules.swap(~Flaming Sword~[;] ~Frozen Sword~); Rules.swap(~Mercy~[;] ~Uncle~); Rules.swap(~Lighter~[;] ~Icicle~); Rules.swap(~Molotov Cocktail~[;] ~Liquid Nitrogen~); Rules.swap(~Cannon Fire~[;] ~Hailstone~); Rules.swap(~Wicker Staff~[;] ~Wicker Gemstaff~); Rules.swap(~Scrap Kettle~[;] ~Iced Latte~); Rules.swap(~Ice Age~[;] ~Fire Age~); Rules.swap(~Ice Shatter~[;] ~Flame Shatter~); Rules.swap(~Trident~[;] ~Pitchfork~); Rules.swap(~Blast Chiller~[;] ~Furnace~); Rules.swap(~Fool's Fire~[;] ~Fool's Frost~); ,YES
+Space Marine,Enemies countdowns reduce at|double the normal rate.,spacemarine,-30|-10,YES,Rules.enemycountdownrate = 2;,YES
+Wizard,All enemies get an extra dice.,wizard,-50|-20,YES,Rules.addextrascript(~target.extradice = 1;~[;] ~startcombat~); ,YES
+Beatrice,On your first turn[;] all of your|equipment is [shock]Shocked.,queenbee,-40|-30,YES,Rules.addplayerinnatestatus(SHOCK[;] 6[;] true);,YES
+Keymaster,You can't make more than six|moves per turn.,keymaster,-30|-40,YES,Rules.movelimit = 6;,YES
+Crystalina,Keep unused dice until your next turn.|Lose [heart]1 hp for each dice you keep.,crystalina,-10|0,YES,Rules.addplayerinnatestatus(~crystalinaremix~[;]1[;]false);,YES
+Crystalina,Keep unused dice until your next turn.|Lose [heart]1 hp for each dice you keep.,crystalina,-10|0,YES,Rules.addplayerinnatestatus(~crystalinaremix~[;]1[;]false);,YES

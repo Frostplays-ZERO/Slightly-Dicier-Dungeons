@@ -1,0 +1,3 @@
+Name,Description,Requirements,Script
+Debug,Halves error chance this turn,,inflictself(~DEBUG~); for(eq in self.equipment){ if(eq.name.indexOf(~Calculate@~)>=0){var parts = eq.name.split(~@~); var id=[~0~|~1~|~2~|~3~|~4~]; var di=[~0~|~0~|~0~|~1~|~2~]; for(c in 0 ... 5){if(parts[1]==id[c]){self.replaceskillcard(~Calculate@~+di[c]);}} } }
+Reboot,Roll two dice[;] reset Calculator,,givedice();givedice(); self.replaceskillcard(~Calculate@2~); self.changelimitbreak(~Debug~);

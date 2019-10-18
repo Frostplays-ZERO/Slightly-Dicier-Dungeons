@@ -1,0 +1,2 @@
+Name,Displayed As,Symbol,Description,External Scripts?,Stacks?,Remove at End Turn?,Remove at Start Turn?,Invisible?
+DEBUG,Debugged,cog,Halves error chance this turn.,NO,NO,YES,NO,NO
