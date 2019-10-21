@@ -1,7 +1,7 @@
 Features of this mod:
 * A bunch of items (currently implemented: none!)
 * Wicker Dog (implemented)
-* Lady Luck (as a normal boss) (currently unimplemented)
+* Lady Luck (as a normal boss) (currently broken and idk why)
 * A couple of remix rules (currently implemented: Magician, Drake (old drake rule is GONE), Scathach (Ditto), Banshee (Ditto), The Warrior, The Jester, The Warrior?, Ned (slightly modified),  Kraken (slightly modified)
 * Whatever the hell i decide to make in the future
 * PU Warrior has been improved, and PU inventor has normal scrap

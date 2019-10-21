@@ -14,9 +14,11 @@ function isenemyindungeon(enemyname){
 //Generic setup: define some remixes that should never occur at the same time
 Remix.preventclash(['Lady Luck', 'Rat King','Ned']); //Upgraded equipment + super enemies don't work together <Dicier>
 Remix.preventclash(['Snowman', 'Baby Squid', 'Fireman']); //More than one status effect dealer is messy
-Remix.preventclash(['Singer', 'Bounty Hunter', 'Magician']); //Avoid more than one dice roll rule change for the player <Dicier>
-Remix.preventclash(['Warlock', 'Banshee']); //Don't have both Warlock and a remix that changes to PU rules
+Remix.preventclash(['Singer', 'Bounty Hunter', 'Magician', 'Rhino Beetle']); //Avoid more than one dice roll rule change for the player <Dicier>
+//Remix.preventclash(['Warlock', 'Banshee']); //Don't have both Warlock and a remix that changes to PU rules
 Remix.preventclash(['Warlock', 'Drake']);  //<Dicier> oh god no
+Remix.preventclash(['The Inventor', 'Drake']);  //<Dicier> you might blindly scrap the bullet
+Remix.preventclash(['The Jester', 'Drake@Jester', 'The Warrior?']);  //<Dicier> Just not a good idea
 // Remix.preventclash(['Skeleton', 'Scathach']); 
 Remix.preventclash(['The Warrior', 'The Thief', 'Scathach', 'Drake', 'The Jester', 'The Warrior?']); //<Dicier> these all fricc with skill cards
 
@@ -36,12 +38,12 @@ if(player != 'Witch' && player != 'Jester'){
 }
 veryrare = shuffle(veryrare);
 
-var curselist = ['Dire Wolf', 'Banshee'];
+var curselist = ['Dire Wolf'];
 var firelist = ['Buster'];
 curselist = shuffle(curselist);
 firelist = shuffle(firelist);
 
-var standardlist = ['Snowman', 'Baby Squid', 'Rat King', 'Hothead', 'Fireman', 'Vacuum', 'Slime'];
+var standardlist = ['Snowman', 'Baby Squid', 'Rat King', 'Hothead', 'Fireman', 'Vacuum', 'Slime', 'Audrey'];
 if(player != 'Robot') standardlist.push(rand(['Singer'|'Magician'])); //Robot shouldn't get Singer or Magician, also only offer one <Dicier>
 if(player == 'Robot') standardlist.push('Robobot'); //Robot only remix
 if(player == 'Warrior') standardlist.push('Keymaster'); //Warrior's more likely to get Keymaster
@@ -62,7 +64,7 @@ if(player == 'Inventor') earlytwists.push('The Inventor'); //PU Scrap rules
 if(player == 'Warrior') earlytwists.push('The Warrior'); //PU skill card swapping <Dicier>
 if(player == 'Warrior' || player == 'Thief') earlytwists.push('Scathach'); //uptick rules <Dicier>
 if(player=='Jester') earlytwists.push(rand(['The Jester'|'The Warrior?'])); //either Losers Weepers or Warrior rules
-if(player=='Jester'){earlytwists.push('Drake@Jester');}else{if(player != 'Robot && player != 'Witch && isenemyindungeon('Drake') == false){earlytwists.push('Drake');}} //the correct Dicier!Drake rule
+if(player=='Jester'){earlytwists.push('Drake@Jester');}else{if(player != 'Robot' && player != 'Witch' && !isenemyindungeon('Drake')){earlytwists.push('Drake');}} //the correct Dicier!Drake rule
 if(player != 'Witch' && player != 'Jester'){ //Let's consider adding Marshmallow
   //Witch and Jester can't support Marshmallow just yet, I still need to make sure equipment swapping
   //doesn't break on spellbooks and decks before I set it live
@@ -84,7 +86,7 @@ if(player != 'Witch' && player != 'Jester'){ //Let's consider adding Marshmallow
   }
 }
 
-var latelist = ['Sorceress', 'Bully', 'Bounty Hunter', 'Kraken'];
+var latelist = ['Sorceress', 'Bully', 'Bounty Hunter', 'Kraken', 'Rhino Beetle'];
 if(!isenemyindungeon('Scathach')){
   standardlist.push('Cowboy'); //Don't offer the Cowboy rule if Scathach is the boss
 }

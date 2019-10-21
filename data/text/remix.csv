@@ -28,7 +28,7 @@ Handyman,You need an even dice to unshock|[shock]Shocked[] equipment.,handyman,-
 Wizard,All enemies get an extra dice.,wizard,-50|-20,YES,Rules.addextrascript(~target.extradice = 1;~[;] ~startcombat~); ,YES
 Warlock,Status effects are different.,warlock,-70|-50,YES,Rules.setalternate(~all~);,YES
 Alchemist,After 4 turns[;] all enemies transform|into bears.,potionmixer,-20|-70,YES,Rules.addenemyinnatestatus(~beartransform~[;] 4[;] true);,YES
-Space Marine,Enemies will never roll a 1.,spacemarine,-30|-10,YES,Rules.enemydicerange([2[;] 3[;] 4[;] 5[;] 6]);,YES
+Audrey,Enemies will never roll a 1.,gym_leader,-30|-10,YES,Rules.enemydicerange([2[;] 3[;] 4[;] 5[;] 6]);,YES
 Bounty Hunter,You will never roll a 6.,bountyhunter,-20|0,YES,Rules.playerdicerange([1[;]2[;] 3[;] 4[;] 5]);,YES
 Rose,Both you and your enemies do +[sword]1|extra damage with each attack.,rose,-20|-40,YES,Rules.bonusdamage = 1; Rules.addenemyinnatestatus(~extradamage~[;] 1[;] false); Rules.addplayerinnatestatus(~extradamage~[;] 1[;] false);,YES
 Cactus,When you defeat an enemy[;] excessive|damage is reflected back at you.,cactuswarrior,-20|0,YES,Rules.addenemyinnatestatus(~reflectexcess~[;] 1[;] false);,YES
@@ -46,7 +46,7 @@ Hothead,If you or your enemy rolls a six[;] it|automatically catches on fire.,ho
 Pirate,Both you and your enemies start each|fight with [recycle]Re-Equip_Next[].,pirate,-60|-20,YES,Rules.addplayerinnatestatus(REEQUIPNEXT[;] 1[;] true); Rules.addenemyinnatestatus(REEQUIPNEXT[;] 1[;] true); ,YES
 Rotten Apple,Maximum health no longer increases|when you level up.,applemimic,0|0,YES,Rules.hpchangeonlevelup = 0;,YES
 Copycat,Enemies can steal a random piece of|equipment from you every turn.,copycat,0|0,NO,//to do: implement this - Rules.addextrascript(~if(target.spaceleft() >= 2) {giveenemyequipment(\~Thief Stolen Card\~| false| false); }~[;] ~startcombat~);,YES
-The Warrior,Your skill card is|randomised each turn.,_warrior,-90|-20,YES,Rules.addextrascript(~var card = ''; if(chance(25)){card =rand(['Combat Key'|'Combat Lock'|'Combat Doppel'|'Combat Spanner']);} else{ card=rand(['Combat Roll@SDD'|'Combat Spatula@SDD'|'Combat Bump'|'Combat Nudge']);} self.replaceskillcard(card)~;|~onstartturn~),YES
+The Warrior,Your skill card is randomised|each turn.,_warrior,-90|-20,YES,Rules.addextrascript(~var card = ''; if(chance(25)){card =rand(['Combat Key'|'Combat Lock'|'Combat Doppel'|'Combat Spanner']);} else{ card=rand(['Combat Roll@SDD'|'Combat Spatula@SDD'|'Combat Bump'|'Combat Nudge']);} self.replaceskillcard(card);~|~onstartturn~);,YES
 The Robot,Switch to ~You Choose[;] You Lose~ rules.,_robot,-90|-20,NO,//to do: implement this,YES
 The Inventor,Reduce scrap choices to two. The|second choice is hidden.,_inventor,-90|-40,YES,Rules.inventor_blindinspiration = true;,YES
 The Witch,One spell slot contains a completely|random spell each turn.,_witch,-90|-30,NO,//to do: implement this,YES
@@ -64,4 +64,4 @@ Wizard,All enemies get an extra dice.,wizard,-50|-20,YES,Rules.addextrascript(~t
 Beatrice,On your first turn[;] all of your|equipment is [shock]Shocked.,queenbee,-40|-30,YES,Rules.addplayerinnatestatus(SHOCK[;] 6[;] true);,YES
 Keymaster,You can't make more than six|moves per turn.,keymaster,-30|-40,YES,Rules.movelimit = 6;,YES
 Crystalina,Keep unused dice until your next turn.|Lose [heart]1 hp for each dice you keep.,crystalina,-10|0,YES,Rules.addplayerinnatestatus(~crystalinaremix~[;]1[;]false);,YES
-Crystalina,Keep unused dice until your next turn.|Lose [heart]1 hp for each dice you keep.,crystalina,-10|0,YES,Rules.addplayerinnatestatus(~crystalinaremix~[;]1[;]false);,YES
+Rhino Beetle,[lock]Counter a random dice value each turn.,rhino_beetle,0|0,YES,Rules.addextrascript(~var val = rand([1|2|3|4|5|6]); inflictself(~counter_~ + val); sfx('_lock'); }~[;] ~beforestartturn~);,YES
