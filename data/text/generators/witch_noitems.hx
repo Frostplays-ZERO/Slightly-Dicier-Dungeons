@@ -75,7 +75,7 @@ otherstuff = [
 ];
 
 goodotherstuff = [
-  shop([commonlist_offensive.pop(), "Health", commonlist_dicemanipulation.pop()]), [99,3,99])
+  shop([commonlist_offensive.pop(), "Health", commonlist_dicemanipulation.pop()], [99,3,99])
 ];
 
 addfloor("normal")
@@ -97,7 +97,7 @@ otherstuff = [
 ];
 var goodshopcontents = shuffle(["Lightning Bolt", "Inferno", "Blizzard", "Shockwave"]);
 goodotherstuff = [
-  shop([commonlist_offensive.pop(), "Health", commonlist_dicemanipulation.pop()]), [99,3,99])
+  shop([commonlist_offensive.pop(), "Health", commonlist_dicemanipulation.pop()], [99,3,99])
 ];
 		
 addfloor("normal")
@@ -110,8 +110,7 @@ items = [];
 gooditems = [];
 otherstuff = [health(), health(), health()];
 goodotherstuff = [
-  shop([commonlist_offensive.pop(), "Health", commonlist_dicemanipulation.pop()]), [99,3,99])
-    ]))
+  shop([commonlist_offensive.pop(), "Health", commonlist_dicemanipulation.pop()], [99,3,99])
 ];
 		
 addfloor("big")

@@ -1,2 +1,6 @@
 Name,Displayed As,Symbol,Description,External Scripts?,Stacks?,Remove at End Turn?,Remove at Start Turn?,Invisible?
 DEBUG,Debugged,cog,Halves error chance this turn.,NO,NO,YES,NO,NO
+cpu,CPU,cog,Your CPU counter.,NO,YES,YES,NO,NO
+cpu_blind,CPU,blind,This should not appear.,NO,YES,YES,NO,YES
+cpuisblind,CPU,blind,Your CPU counter. Blinded.,NO,NO,YES,NO,NO
+corrosion,Corrosion,weaken,Disables equipment.,NO,YES,YES,NO,NO

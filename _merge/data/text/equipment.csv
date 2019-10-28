@@ -1,0 +1,7 @@
+Name,Description,Size,Script: On Execute,Gadget,Slots,NEED TOTAL?,Category,Colour,Upgrade,Weaken,Alternate Status Trigger,SFX,Uses?,Cast Backwards?,Single use?,Parallel Universe,Special?,Error Immune,Show Gold,Appears For Parts,Hide Reuseable,Witch Spell,Script: Before Combat,Script: After Combat,Script: Before Start Turn,Script: On Start Turn,Script: On any equipment use,Script: On any countdown reduce,Script: End Turn,Script: Before execute,Script: On Snap,Script: On Fury
+Spare 1,A spare one,1,,Magic Dice,SPARE1,,ITEM,YELLOW,change_power,burnsparedice,,none,0,YES,NO,YES,YES,NO,NO,NO,NO,,,,,,,,,,,
+Spare 2,A spare two,1,,Magic Dice,SPARE2,,ITEM,YELLOW,change_power,burnsparedice,,none,0,YES,NO,YES,YES,NO,NO,NO,NO,,,,,,,,,,,
+Spare 3,A spare three,1,,Magic Dice,SPARE3,,ITEM,YELLOW,change_power,burnsparedice,,none,0,YES,NO,YES,YES,NO,NO,NO,NO,,,,,,,,,,,
+Spare 4,A spare four,1,,Magic Dice,SPARE4,,ITEM,YELLOW,change_power,burnsparedice,,none,0,YES,NO,YES,YES,NO,NO,NO,NO,,,,,,,,,,,
+Spare 5,A spare five,1,,Magic Dice,SPARE5,,ITEM,YELLOW,change_power,burnsparedice,,none,0,YES,NO,YES,YES,NO,NO,NO,NO,,,,,,,,,,,
+Spare 6,A spare six,1,,Magic Six,SPARE6,,ITEM,YELLOW,change_power,burnsparedice,,none,0,YES,NO,YES,YES,NO,NO,NO,NO,,,,,,,,,,,

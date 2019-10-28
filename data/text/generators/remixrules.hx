@@ -17,7 +17,7 @@ Remix.preventclash(['Snowman', 'Baby Squid', 'Fireman']); //More than one status
 Remix.preventclash(['Singer', 'Bounty Hunter', 'Magician', 'Rhino Beetle']); //Avoid more than one dice roll rule change for the player <Dicier>
 //Remix.preventclash(['Warlock', 'Banshee']); //Don't have both Warlock and a remix that changes to PU rules
 Remix.preventclash(['Warlock', 'Drake']);  //<Dicier> oh god no
-Remix.preventclash(['The Inventor', 'Drake']);  //<Dicier> you might blindly scrap the bullet
+Remix.preventclash(['The Inventor', 'Drake', 'Val']);  //<Dicier> you might blindly scrap the bullet
 Remix.preventclash(['The Jester', 'Drake@Jester', 'The Warrior?']);  //<Dicier> Just not a good idea
 // Remix.preventclash(['Skeleton', 'Scathach']); 
 Remix.preventclash(['The Warrior', 'The Thief', 'Scathach', 'Drake', 'The Jester', 'The Warrior?']); //<Dicier> these all fricc with skill cards
