@@ -65,3 +65,5 @@ Beatrice,On your first turn[;] all of your|equipment is [shock]Shocked.,queenbee
 Keymaster,You can't make more than six|moves per turn.,keymaster,-30|-40,YES,Rules.movelimit = 6;,YES
 Crystalina,Keep unused dice until your next turn.|Lose [heart]1 hp for each dice you keep.,crystalina,-10|0,YES,Rules.addplayerinnatestatus(~crystalinaremix~[;]1[;]false);,YES
 Rhino Beetle,[lock]Counter a random dice value each turn.,rhino_beetle,0|0,YES,Rules.addextrascript(~var val = rand([1|2|3|4|5|6]); inflictself(~counter_~ + val); sfx('_lock'); }~[;] ~beforestartturn~);,YES
+Demon,You start each turn with [fury]Fury[;] but|it only works 50% of the time.,halloweenspecial_devil,-20|0,YES,Rules.addplayerinnatestatus(~spookyfury~[;] 1[;] false); ,YES
+Mummy,All status effects are doubled.,halloweenspecial_pumpkinspice,-25|-15,YES,Rules.overload = true;,YES

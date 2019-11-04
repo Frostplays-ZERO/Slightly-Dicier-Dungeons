@@ -4,3 +4,9 @@ cpu,CPU,cog,Your CPU counter.,NO,YES,YES,NO,NO
 cpu_blind,CPU,blind,This should not appear.,NO,YES,YES,NO,YES
 cpuisblind,CPU,blind,Your CPU counter. Blinded.,NO,NO,YES,NO,NO
 corrosion,Corrosion,weaken,Disables equipment.,NO,YES,YES,NO,NO
+reversenexttarget,Swap_Next_Target,recycle,The next equipment you use will swap target.,NO,YES,YES,YES,NO
+haunted,Haunted,haunted,Using any piece of equipment will|reroll a random dice.,NO,YES,YES,NO,NO
+blockall,Block_All,reduce,Take no damage until the end of this turn.,NO,NO,YES,YES,NO
+spookyfury,Spooky_Fury,fury,50% chance to use the next equipment twice[;]|lasts until something triggers it.,NO,YES,YES,NO,NO
+doublespookyfury,Spooky_Fury,fury,50% chance to use the next equipment twice[;]|lasts until something triggers it.,NO,NO,YES,YES,YES
+calm,Calm_Mind,recycle,Next equipment has +1 use.,NO,YES,NO,NO,NO

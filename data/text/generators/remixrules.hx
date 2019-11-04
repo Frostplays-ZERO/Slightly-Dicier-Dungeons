@@ -23,7 +23,7 @@ Remix.preventclash(['The Jester', 'Drake@Jester', 'The Warrior?']);  //<Dicier> 
 Remix.preventclash(['The Warrior', 'The Thief', 'Scathach', 'Drake', 'The Jester', 'The Warrior?']); //<Dicier> these all fricc with skill cards
 
 //Some remixes are very game defining, and it's better if they only come up very occasionally
-var veryrare = ['Sticky Hands'];
+var veryrare = ['Sticky Hands', 'Demon'];
 if(player != 'Robot') veryrare.push('Wisp'); //Robot is offered Wisp elsewhere
 if(player != 'Thief') veryrare.push('Crystalina'); //Thief is offered Crystalina elsewhere
 if(player != 'Warrior') veryrare.push('Sneezy'); //Warrior is offered Sneezy elsewhere
@@ -54,7 +54,7 @@ if(isenemyindungeon('Buster')){
 
 var secondremixlist = [];
 
-var earlytwists = ['Wolf Puppy', 'Mimic', 'Cactus', 'Rose', 'Pirate', 'Warlock'];
+var earlytwists = ['Wolf Puppy', 'Mimic', 'Cactus', 'Rose', 'Pirate', 'Warlock', 'Mummy'];
 //Thief, Jester and Warrior *can* get keymaster, but it's in the veryrare list or standard lists instead
 if(player != 'Thief' && player != 'Jester' && player != 'Warrior') earlytwists.push('Keymaster'); 
 if(player == 'Thief') earlytwists.push('The Thief'); //Finders Keepers rules
