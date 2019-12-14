@@ -1,0 +1,10 @@
+Name,Description,Image,ImageOffset,Implemented,Rule Change,Apply On Continue
+Rhino Beetle,[lock]Counter a random dice value each turn.,rhino_beetle,0|0,YES,Rules.addextrascript(~var val = rand([1|2|3|4|5|6]); inflictself(~counter_~ + val); sfx('_lock'); }~[;] ~beforestartturn~);,YES
+Demon,You start each turn with [fury]Fury[;] but|it only works 50% of the time.,halloweenspecial_devil,-20|0,YES,Rules.addplayerinnatestatus(~spookyfury~[;] 1[;] false); ,YES
+Mummy,All status effects are doubled.,halloweenspecial_mummy,-25|-15,YES,Rules.overload = true;,YES
+Audrey,Enemies will never roll a 1.,gym_leader,-30|-10,YES,Rules.enemydicerange([2[;] 3[;] 4[;] 5[;] 6]);,YES
+Gardener,One of your items is [weaken]Weakeneded | each turn.,gardener,0|0,YES,Rules.addplayerinnatestatus(WEAKEN); ,YES
+The Warrior?,You are now a Warrior.,_warrior,-90|-20,YES,Deck.lookahead = 0; Deck.sethandsize(3); Deck.snapbutton = false; var unchanged=true; Rules.addextrascript(~var shouldgive=self.getvar('unchanged'); if(shouldgive){trace('Warriorised!'); self.replaceskillcard('Combat Roll'); self.changelimitbreak('Fury'); self.setvar('unchanged'|false);}~|~onstartturn~);,YES
+The Bear,Transform into a Bear.,_bear,-90|-20,YES,Rules.addextrascript(~self.textparticle(getplayername()); if(getplayername() != 'Bear') {beartransform(); self.textparticle('poof!');} ~[;] ~onstartturn~);,YES
+Magician,Roll only odd dice on odd turns|and even dice on even turns.,streetmagician,0|0,YES,Rules.addextrascript(~if(turn%2==0){Rules.stackplayerdice([2[;]4[;]6][;] false[;] false);}else{Rules.stackplayerdice([1[;]3[;]5][;] false[;] false);}~[;] ~onstartturn~);,YES
+Drake@Jester,Get a Silver Bullet.|All enemies become [curse]Vampires.,vampire,-30|10,YES,var hasbullet = false; Rules.addenemyinnatestatus(VAMPIRE); Rules.addextrascript(~var shouldgive=self.getvar('hasbullet'); if(turn==1&&shouldgive==false){trace('Bullet Added!'); addjestercard('Silver Bullet'); self.setvar('hasbullet'|true);}~|~onstartturn~),YES
