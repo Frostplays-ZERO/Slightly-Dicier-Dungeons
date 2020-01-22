@@ -1,0 +1,2 @@
+ID,Levelpack,Character,Overworld Sprite,Difficulty,Icon,Select Normal Sprite,Select Normal Sprite Offset,Select Endgame Sprite,Select Endgame Sprite Offset,Initial Description,Middle Description,Endgame Description,Post Endgame Description
+diceydungeons_bear,diceydungeons,Bear,overworld_bear,1,characters/bear/charicon_bear,cutscenes/jester/jester_idle.json,0|75,cutscenes/jester/jester_defiant_idle.json,-25|75,RAWR!,RRRAWR!,Rawr...?,Rrrrawr!
